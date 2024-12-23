@@ -1,0 +1,41 @@
+{
+  "locale": [
+    "en"
+  ],
+  "service": "FINANCE",
+  "whiteListedDomains": [],
+  "modules": {
+    "widgets": [
+      {
+        "location": "background",
+        "name": "Finance Extension",
+        "url": "/app/widget.html",
+        "logo": "/app/img/logo.png"
+      },
+      {
+        "location": "background",
+        "widget_type": "modal",
+        "name": "Custom Modal",
+        "url": "/app/modal.html"
+      }
+    ]
+  },
+  "config": [],
+  "usedConnections": [
+    {
+      "connectionLinkName" : "books",
+      "connectionName": "books",
+      "serviceName": "zoho_books",
+      "userAccess":  true,
+      "isUserDefinedService":  false,
+      "scope" :[
+        "ZohoBooks.custommodules.ALL",
+        "ZohoBooks.custommodules.All",
+        "ZohoBooks.fullaccess.all"       
+      ],
+      "sharedBy":  "60034848153"
+  }
+  ]
+  
+  
+}

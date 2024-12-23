@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Modal</title>
+    <link rel="stylesheet" href="./CSS/CustomAlert.css"> <!-- Link to external CSS -->
+</head>
+<body>
+    <div id="customAlert" class="modal-overlay hidden">
+        <div class="modal-container modal-box">
+            <h3 class="modal-title">Custom Alert</h3>
+            <p id="alertMessage" class="modal-content">This is your custom modal alert message!</p>
+            <button id="closeAlert" class="modal-button">Close</button>
+        </div>
+    </div>
+    <script>
+        // Close modal functionality
+        document.getElementById("closeAlert").onclick = function () {
+            ZFAPPS.closeModal();
+        };
+    </script>
+   
+</body>
+</html>

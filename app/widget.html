@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Zoho Books Widget</title>
+    <link rel="stylesheet" href="./CSS/CustomAlert.css">
+</head>
+
+<body>
+
+    <h2>Invoice Save Validation</h2>
+    <!-- Custom Alert Modal
+    <div id="customAlert" class="modal-overlay hidden">
+    <div class="modal-box">
+      <h3 class="modal-title">Alert</h3>
+      <p id="alertMessage" class="modal-content">This is an alert message.</p>
+      <button id="closeAlert" class="modal-button">OK</button>
+    </div>
+  </div> -->
+  
+    <script src="https://js.zohostatic.com/zohofinance/v1/zf_sdk.js"></script>
+
+    <script src="./js/extension.js"></script>
+    
+    
+    //     window.onload = function () 
+    //         ZFAPPS.extension.init().then(function (App) {
+    //             console.log("Widget initialized for Pre-Save Check.");
+
+    //             // Pre-save validation
+    //             App.instance.on"ON_INVOICE_CHANGE", async () => {
+    //                 console.log("ON_INVOICE_CHANGE event triggered.");
+
+    //                 try {
+    //                     // Fetch the invoice details
+    //                     const response = await ZFAPPS.get('invoice');
+    //                     const invoice = response.invoice || response;
+
+    //                     console.log("Fetched Invoice:", invoice);
+
+    //                     // Check if all line items have tags
+    //                     const hasTags = invoice.line_items.every(item => item.tags && item.tags.length > 0);
+
+						
+
+	// 					// if (!hasTags) {
+    //             // alert("Tags are missing in one or more line items. Please add tags before saving.");
+    //             // Disable the save button
+    //             // ZFAPPS.set('invoice.cf__in_rxupsfh_is_tag_filled', false).then(function () {
+    //             //     console.log("Save button disabled as tags are missing.");
+    //             // }).catch(function (error) {
+    //             //     console.error("Error disabling save button:", error);
+    //             // });
+    //         // }
+	// 					if (hasTags) {
+    //             // alert("Tags are missing in one or more line items. Please add tags before saving.");
+    //             // Disable the save button
+    //             ZFAPPS.set('invoice.cf__in_rxupsfh_is_tag_filled', true).then(function () {
+    //                 console.log("Save button disabled as tags are missing.");
+    //             }).catch(function (error) {
+    //                 console.error("Error disabling save button:", error);
+    //             });
+    //         }
+
+			
+
+	// 		                    } catch (error) {
+    //                     console.error("Error during Pre-Save validation:", error);
+    //                     await showErrorNotification("An error occurred while validating the invoice.");
+    //                     return { prevent_save: true }; // Block save in case of error
+    //                 }
+
+    //                     // if (!hasTags) {
+    //                     //     // If tags are missing, prevent saving and show a message
+    //                     //     await showErrorNotification("Tags are missing in one or more line items. Please add tags before saving.");
+    //                     //     return { prevent_save: true }; // Stops the save operation
+    //                     // }
+
+
+    //             //         // If all checks pass
+    //             //         console.log("All line items have tags. Proceeding with save.");
+    //             //         return { prevent_save: false }; // Allows the save operation
+    //             //     } catch (error) {
+    //             //         console.error("Error during Pre-Save validation:", error);
+    //             //         await showErrorNotification("An error occurred while validating the invoice.");
+    //             //         return { prevent_save: true }; // Block save in case of error
+    //             //     }
+    //             // });
+
+    //             // // Helper function to show error notifications
+    //             // async function showErrorNotification(message) {
+    //             //     console.warn("Error Notification:", message);
+    //             //     alert(message); // Use a custom notification UI here if needed
+    //             // }
+
+</body>
+
+</html>
+
+
+<!-- <!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Zoho Books Widget</title>
+</head>
+
+<body>
+
+    <h2>This is a sampleWidget1.</h2>
+
+    <script src="https://js.zohostatic.com/zohofinance/v1/zf_sdk.js"></script>
+    <script>
+    window.onload = function () {
+    ZFAPPS.extension.init().then(function (App) {
+        console.log("Widget initialized.");
+
+
+		App.instance.on('ON_INVOICE_CHANGE', function(data){
+
+			console.log("Krunal On Testing...");
+
+		// 			//data handling
+		ZFAPPS.get('invoice').then(function (invoiceResponse) {
+            console.log("Invoice Response:", invoiceResponse);
+
+            // Access invoice data directly if 'get' is not a function
+            let invoice = invoiceResponse.invoice || invoiceResponse;
+            console.log("Fetched Invoice Data:", invoice);
+
+			const hasTags = invoice.line_items.every(item => item.tags && item.tags.length > 0);
+            if (!hasTags) {
+                alert("Tags are missing in one or more line items. Please add tags before saving.");
+                // Disable the save button
+                ZFAPPS.set('invoice.can_submit', false).then(function () {
+                    console.log("Save button disabled as tags are missing.");
+                }).catch(function (error) {
+                    console.error("Error disabling save button:", error);
+                });
+            }
+		// 			ZFAPPS.get('invoice').then(function (invoiceResponse) {
+        //     			console.log("Invoice Response:", invoiceResponse);
+		// 			}).catch(function (error) {
+        //     			console.error("Error fetching initial invoice data:", error);
+        			});
+				
+				console.log("ON_INVOICE_CHANGE successfully... ");		
+
+		// 			Set the subtotal		
+		});  
+        // Fetch current invoice data
+        // ZFAPPS.get('invoice').then(function (invoiceResponse) {
+        //     console.log("Invoice Response:", invoiceResponse);
+
+        //     // Access invoice data directly if 'get' is not a function
+        //     let invoice = invoiceResponse.invoice || invoiceResponse;
+        //     console.log("Fetched Invoice Data:", invoice);
+
+		// 	let customer_id=invoice.customer_id;
+        //     console.log("Fetched customer_id Data:", customer_id);
+
+
+		// 	const hasTags = invoice.line_items.every(item => item.tags && item.tags.length > 0);
+        //     if (!hasTags) {
+        //         alert("Tags are missing in one or more line items. Please add tags before saving.");
+        //         // Disable the save button
+        //         ZFAPPS.set('invoice.can_submit', false).then(function () {
+        //             console.log("Save button disabled as tags are missing.");
+        //         }).catch(function (error) {
+        //             console.error("Error disabling save button:", error);
+        //         });
+        //     }
+        // // }).catch(function (error) {
+        // //     console.error("Error fetching invoice data:", error);
+        // // });
+
+		// 	let line_items=invoice.line_items;
+        //     console.log("Fetched line_items Data:", line_items);
+		// 	line_items.forEach(
+		// 		item => {
+        //             if (item.tags) {
+						
+		// 				ZFAPPS.set('invoice.line_items.tags.', true).then(function (setResponse) {
+        //         console.log("tag set as mandatory:", setResponse);
+
+        //         // Re-fetch the updated invoice data to calculate total
+        //         return ZFAPPS.get('invoice');
+        //     })
+
+		// 				console.log("Krunal On Testing...");
+						
+        //                 console.log(`Tags for item ${item.name} : ${item.tags}`);
+        //                 item.tags.forEach(tag => {
+        //                     console.log(`Tag Name: ${tag.tag_id}, Option: ${tag.tag_option_id}`);
+        //                 });
+        //             } else {
+		// 				// item.tags.is_tag_mandatory
+        //                 console.log(`No tags found for item ${item.name}`);
+        //             }
+		// 	});
+
+
+
+		// 	let newSubtotal = 10000; // Example value
+        //     ZFAPPS.set('invoice.sub_total', newSubtotal).then(function (setResponse) {
+        //         console.log("Subtotal set successfully:", setResponse);
+
+        //         // Re-fetch the updated invoice data to calculate total
+        //         return ZFAPPS.get('invoice');
+        //     }).then(function (updatedInvoiceResponse) {
+        //         console.log("Updated Invoice Response:", updatedInvoiceResponse);
+                
+        //         // Access updated invoice data
+        //         let updatedInvoice = updatedInvoiceResponse.invoice || updatedInvoiceResponse;
+        //         console.log("Updated Invoice Data:", updatedInvoice);
+
+        //         // Calculate the total (adjust logic as needed)
+        //         let updatedSubtotal = updatedInvoice.sub_total || newSubtotal; // Fallback to newSubtotal
+        //         let calculatedTotal = updatedSubtotal; // Replace with a real calculation if needed
+
+        //         // Set the calculated total
+        //         return ZFAPPS.set('invoice.total', calculatedTotal);
+        //     }).then(function (totalSetResponse) {
+        //         console.log("Total set successfully:", totalSetResponse);
+        //     }).catch(function (error) {
+        //         console.error("Error in processing invoice data:", error);
+        //     });
+
+        // }).catch(function (error) {
+        //     console.error("Error fetching initial invoice data:", error);
+        // });
+    });
+};
+
+    </script>
+
+</body>
+
+</html>
+
+
+
+
+
+ <!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Zoho Books Widget</title>
+</head>
+
+<body>
+
+	<h2>This is a sample App built using ZET CLI.</h2>
+
+	<script src="https://js.zohostatic.com/zohofinance/v1/zf_sdk.js"></script>
+	<script>
+
+var sub_total;
+	window.onload = function () {
+
+		ZFAPPS.extension.init().then(function (App) {
+
+		 //Get invoice data
+ 		 ZFAPPS.get('invoice').then(function (res) {
+ 					//response Handling
+					console.log(res);
+					
+ 		 }).catch(function (err) {
+ 					//error Handling
+					console.log(err);
+					
+ 		 });
+ 		
+				//To Set data in books app UI client
+				ZFAPPS.set('invoice.reference_number', 'REF-001').then(function (res) {
+					//response Handling
+					console.log(res);
+					
+				}).catch(function (err) {
+					//error Handling
+				});
+
+				ZFAPPS.set('invoice.sub_total', '10000').then(function (res) {
+					//response Handling
+					sub_total=res.get('invoice').get('sub_total');
+					console.log(sub_total);
+					ZFAPPS.set('invoice.total', sub_total).then(function (res) {
+					//response Handling
+					// console.log(sub_total);
+					
+					// console.log(res);
+					
+				}).catch(function (err) {
+					//error Handling
+					console.log(err);
+					
+				});
+					
+					console.log(res);
+					
+				}).catch(function (err) {
+					//error Handling
+				});
+
+				
+
+			
+				//To resize the frame size
+				// ZFAPPS.invoke('RESIZE', { width: '100px', height: '100px'}).then(function (res) {
+				// 	//response Handling
+				// }).catch(function (err) {
+				// 	//error Handling
+				// });
+
+				//To refresh the books app invoice data
+				// ZFAPPS.invoke('REFRESH_DATA', 'invoice').then(function (res) {
+				// 	//response Handling
+				// }).catch(function (err) {
+				// 	//error Handling
+				// });
+
+
+				// To listen books app event
+				App.instance.on('ON_INVOICE_CHANGE', function(data){
+					//data handling
+				
+					console.log("ON_INVOICE_CHANGE works successfully...");
+					
+				});
+
+				ZFAPPS.get('invoice').then(function (res) {
+ 					//response Handling
+					console.log("Invoice DATa",res);
+					res.get("invoice")
+					
+ 		 			}).catch(function (err) {
+ 					//error Handling
+					console.log(err);
+					
+ 		 			});
+
+
+
+				//To Know more on these, please read the documentation
+ 					
+ 		});
+
+	};
+</script>
+
+	<script src="./js/extension.js" charset="utf-8"></script>
+
+</body>
+
+</html> --> 
